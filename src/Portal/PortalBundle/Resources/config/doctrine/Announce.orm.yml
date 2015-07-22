@@ -1,0 +1,35 @@
+Portal\PortalBundle\Entity\Announce:
+    type: entity
+    table: null
+    repositoryClass: Portal\PortalBundle\Entity\AnnounceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '100'
+        content:
+            type: string
+            length: '1000'
+        address:
+            type: string
+            length: 255
+        created:
+            type: datetime
+        manyToOne:
+          userId:
+            targetEntity: Portal\PortalBundle\Entity\Announce
+            joinColumn:
+              column: categoryId
+              referencedColumnName: id
+        oneToOne:
+          userId:
+            targetEntity: Portal\PortalBundle\Entity\User
+            joinColumn:
+              column: userId
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,30 @@
+announce:
+    pattern:  /
+    defaults: { _controller: "PortalBundle:Announce:index" }
+
+announce_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PortalBundle:Announce:show" }
+
+announce_new:
+    pattern:  /new
+    defaults: { _controller: "PortalBundle:Announce:new" }
+
+announce_create:
+    pattern:  /create
+    defaults: { _controller: "PortalBundle:Announce:create" }
+    requirements: { _method: post }
+
+announce_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PortalBundle:Announce:edit" }
+
+announce_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PortalBundle:Announce:update" }
+    requirements: { _method: post|put }
+
+announce_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PortalBundle:Announce:delete" }
+    requirements: { _method: post|delete }

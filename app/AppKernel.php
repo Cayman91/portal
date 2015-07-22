@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Portal\PortalBundle\PortalBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+            new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

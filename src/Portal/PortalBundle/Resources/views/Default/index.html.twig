@@ -1,11 +1,11 @@
 <div>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-        <a href="{{ path('fos_user_security_logout') }}">
-            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-        </a>
+        <a href="{{ path('fos_user_security_logout') }}"><button>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</button></a>
+        <a href="{{ path('fos_user_profile_show') }}"><button>{{ 'Profile'|trans({}, 'FOSUserBundle') }}</button></a>
+        <a href="{{ path('fos_user_profile_edit') }}"><button>{{ 'Edit'|trans({}, 'FOSUserBundle') }}</button></a>
     {% else %}
-        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-        <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_security_login') }}"><button>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</button></a>
+        <a href="{{ path('fos_user_registration_register') }}"><button>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</button></a>
     {% endif %}
 </div>
