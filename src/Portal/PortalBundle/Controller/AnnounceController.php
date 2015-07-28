@@ -27,6 +27,8 @@ class AnnounceController extends Controller
     {
         list($filterForm, $queryBuilder) = $this->filter();
 
+        //echo($this->getUser()->getId());
+
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
         return $this->render('PortalBundle:Announce:index.html.twig', array(
@@ -121,6 +123,7 @@ class AnnounceController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setUserId($this->getUser());
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');

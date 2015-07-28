@@ -20,16 +20,16 @@ Portal\PortalBundle\Entity\Announce:
             length: 255
         created:
             type: datetime
-        manyToOne:
-          userId:
-            targetEntity: Portal\PortalBundle\Entity\Announce
+            columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    manyToOne:
+        categoryId:
+            targetEntity: Portal\PortalBundle\Entity\Category
             joinColumn:
-              column: categoryId
-              referencedColumnName: id
-        oneToOne:
-          userId:
+            name: categoryId
+            referencedColumnName: id
+        userId:
             targetEntity: Portal\PortalBundle\Entity\User
             joinColumn:
-              column: userId
-              referencedColumnName: id
+            name: userId
+            referencedColumnName: id
     lifecycleCallbacks: {  }

@@ -14,13 +14,10 @@ class AnnounceFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
             ->add('title', 'filter_text')
             ->add('content', 'filter_text')
             ->add('address', 'filter_text')
             ->add('created', 'filter_date_range')
-            ->add('userId', 'filter_number_range')
-            ->add('categoryId', 'filter_number_range')
         ;
 
         $listener = function(FormEvent $event)
