@@ -15,7 +15,7 @@ class AnnounceType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('address')
-            ->add('created', 'hidden') ->addViewTransformer(new DateTimeToStringTransformer())
+            //->add('created', 'hidden')
             ->add('categoryId', null, array('label' => 'Category', 'property' => 'name'))
         ;
     }
