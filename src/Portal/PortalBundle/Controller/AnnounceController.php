@@ -26,6 +26,7 @@ class AnnounceController extends Controller
     public function indexAction()
     {
         list($filterForm, $queryBuilder) = $this->filter();
+        //->where('userId', $this->getUser()->getId())
 
         //echo($this->getUser()->getId());
 
@@ -182,6 +183,7 @@ class AnnounceController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PortalBundle:Announce')->find($id);
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Announce entity.');

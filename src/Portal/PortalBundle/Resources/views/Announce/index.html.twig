@@ -62,7 +62,7 @@
     {% for entity in entities %}
         <tr>
             <td>{{ entity.title }}</td>
-            <td class="test">{{ entity.content }}</td>
+            <td class="longString">{{ entity.content }}</td>
             <td>{{ entity.address }}</td>
             <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{{ entity.categoryId.name }}</td>

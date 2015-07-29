@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <link href="{{ asset('bundles/jordillonchcrudgenerator/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/portal/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/jordillonchcrudgenerator/css/bootstrap-responsive.css') }}" rel="stylesheet">
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <title>{% block title %} Portal{% endblock %}</title>
     <style>
         body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
             padding-left: 20px;
+            padding-right: 20px;
         }
     </style>
-    <link href="{{ asset('bundles/jordillonchcrudgenerator/css/bootstrap-responsive.css') }}" rel="stylesheet">
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 
-    <link href="{{ asset('bundles/portal/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+{% block header %}{% endblock %}
 
 <div class="container">
     {% block menu %}{% endblock %}
@@ -34,6 +35,22 @@
 
 <script src="{{ asset('bundles/jordillonchcrudgenerator/js/jquery.min.js') }}"></script>
 <script src="{{ asset('bundles/jordillonchcrudgenerator/js/bootstrap.js') }}"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () { //
+        $(".longString").each(function () {
+            var maxwidth = 30;
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '...');
+            }
+        });
+    });
+</script>
+
 {% block javascript %}{% endblock %}
 {% block fos_user_content %}
 {% endblock fos_user_content %}
