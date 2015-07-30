@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page %}
-
+    {% if userId == entity.userId.id %}
 <h1>{{ 'views.edit.edit'|trans({'%entity%': 'Announce'}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
 
 <form class="well" action="{{ path('announce_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
@@ -30,4 +30,7 @@
         </form>
     </div>
 </div>
+        {% else %}
+        <h1>Dupa</h1>
+    {% endif %}
 {% endblock %}

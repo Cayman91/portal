@@ -36,6 +36,7 @@ class AnnounceController extends Controller
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
+            'userId' => $this->getUser()->getId(),
         ));
     }
 
@@ -87,6 +88,19 @@ class AnnounceController extends Controller
     protected function paginator($queryBuilder)
     {
         // Paginator
+
+        /*$em = $this->getDoctrine()->getManager();
+
+        $repository = $em->getRepository('PortalBundle:Announce');
+
+        $query = $repository->createQueryBuilder('u')
+            ->where('u.userId = :id')
+            ->setParameter('id', $this->getUser()->getId())
+            ->getQuery();
+
+        $adapter = new DoctrineORMAdapter( $query );*/
+
+
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
@@ -171,7 +185,10 @@ class AnnounceController extends Controller
 
         return $this->render('PortalBundle:Announce:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+            'userId' => $this->getUser()->getId(),
+
+            ));
     }
 
     /**
@@ -184,7 +201,6 @@ class AnnounceController extends Controller
 
         $entity = $em->getRepository('PortalBundle:Announce')->find($id);
 
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Announce entity.');
         }
@@ -196,6 +212,7 @@ class AnnounceController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'userId' => $this->getUser()->getId()
         ));
     }
 

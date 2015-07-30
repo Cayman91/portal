@@ -70,9 +70,10 @@
         <a class="btn btn-mini" href="{{ path('announce_show', { 'id': entity.id }) }}">
             {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
+        {% if userId == entity.userId.id %}
         <a class="btn btn-mini" href="{{ path('announce_edit', { 'id': entity.id }) }}">
             {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>            </td>
+        </a>   {% endif %}         </td>
         </tr>
     {% endfor %}
     </tbody>

@@ -29,7 +29,8 @@
             <label class="control-label">Author</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.userId }}</span>            </div>
         </div>
-        <div class="map"><iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.it/maps?q=<?php echo $entity.address ?>&output=embed"></iframe></div>
+        <div class="map"><iframe width="600" height="450" frameborder="0" style="border:0"
+                                 src="https://www.google.com/maps/embed/v1/place?q={{ entity.address }}&key=AIzaSyD_6-DB_v0WHgLJwwPyOlFJERob36s0Gb4" allowfullscreen></iframe></div>
     </fieldset>
 
 </form>
@@ -41,16 +42,20 @@
         </a>
     </div>
     <div class="float-left">
+        {% if userId == entity.userId.id %}
         <a class="btn btn-primary" href="{{ path('announce_edit', { 'id': entity.id }) }}">
             {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
+        {% endif %}
     </div>
     <div class="float-left">
+    {% if userId == entity.userId.id %}
         <form action="{{ path('announce_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
         </form>
+    {% endif %}
     </div>
 </div>
 {% endblock %}

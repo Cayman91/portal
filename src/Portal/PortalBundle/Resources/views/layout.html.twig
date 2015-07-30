@@ -6,7 +6,14 @@
     <link href="{{ asset('bundles/portal/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/jordillonchcrudgenerator/css/bootstrap-responsive.css') }}" rel="stylesheet">
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <title>{% block title %} Portal{% endblock %}</title>
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+    <title>{% block title %}Portal{% endblock %}</title>
     <style>
         body {
             padding-left: 20px;
@@ -14,9 +21,45 @@
         }
     </style>
 
+
+    {% block stylesheets %}
+
+        {% stylesheets '@PortalBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+   {% block javascripts %}
+        {% javascripts '@PortalBundle/Resources/public/js/*'%}
+        <script type="text/javascript" src="{{ asset_url }}" defer></script>
+        {% endjavascripts %}
+    {% endblock %}
+
 </head>
 <body>
-{% block header %}{% endblock %}
+
+{% block header %}
+    <div>
+    <ul class="nav nav-tabs nav-justified">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li role="presentation"><a href="{{ path ('announce_new') }}">Add announcement</a></li>
+            <li role="presentation"><a href="{{ path ('announce') }}">Announcements</a></li>
+
+            <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li role="presentation"><a href="{{ path('fos_user_profile_show') }}">{{ 'Profile'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li role="presentation"><a href="{{ path('fos_user_profile_edit') }}">{{ 'Edit'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li role="presentation"><a>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a> </li>
+
+        {% else %}
+            <li role="presentation"><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li role="presentation"><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+        {% endif %}
+    </ul>
+    </div>
+{% endblock %}
+
+{% block fos_user_content %}
+{% endblock fos_user_content %}
 
 <div class="container">
     {% block menu %}{% endblock %}
@@ -52,7 +95,5 @@
 </script>
 
 {% block javascript %}{% endblock %}
-{% block fos_user_content %}
-{% endblock fos_user_content %}
 </body>
 </html>

@@ -1,0 +1,53 @@
+{% extends "PortalBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrap">
+                <p class="form-title">
+                    Register</p>
+
+                <form class="login" method="POST" action="/app_dev.php/register/">
+
+                    <div id="fos_user_registration_form">
+                        <input type="email" required="required" name="fos_user_registration_form[email]"
+                               id="fos_user_registration_form_email" placeholder="Email">
+                        <input type="text" pattern=".{2,}" maxlength="255" required="required"
+                               name="fos_user_registration_form[username]" id="fos_user_registration_form_username"
+                               placeholder="Username">
+                        <input type="password" required="required"
+                               name="fos_user_registration_form[plainPassword][first]"
+                               id="fos_user_registration_form_plainPassword_first" placeholder="Password">
+                        <input type="password" required="required"
+                               name="fos_user_registration_form[plainPassword][second]"
+                               id="fos_user_registration_form_plainPassword_second" placeholder="Repeat Password">
+                        <input type="hidden" value="{{ csrf_token('registration') }}"
+                               name="fos_user_registration_form[_token]" id="fos_user_registration_form__token">
+                        <input type="submit" value="Register" class="btn btn-success btn-sm">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+
+
+
+{#
+<div class="row">
+    <div class="col-md-12">
+        <div class="wrap">
+            <p class="form-title">
+                Sign In</p>
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="login">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <input type="text" id="username" name="_username" placeholder="Username" required="required"/>
+                <input type="password" id="password" name="_password" required="required" placeholder="Password" />
+            </form>
+        </div>
+    </div>
+</div>#}
